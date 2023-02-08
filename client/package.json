@@ -11,6 +11,8 @@
     "@mui/lab": "^5.0.0-alpha.118",
     "@mui/material": "^5.11.7",
     "@reduxjs/toolkit": "^1.9.2",
+    "@stripe/react-stripe-js": "^1.16.4",
+    "@stripe/stripe-js": "^1.46.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
