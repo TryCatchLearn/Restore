@@ -71,7 +71,6 @@ export const accountSlice = createSlice({
             router.navigate('/');
         })
         builder.addMatcher(isAnyOf(signInUser.fulfilled, fetchCurrentUser.fulfilled), (state, action) => {
-            console.log(action);
             state.user = action.payload;
         });
         builder.addMatcher(isAnyOf(signInUser.rejected), (state, action) => {

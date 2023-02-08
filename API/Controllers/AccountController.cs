@@ -16,7 +16,7 @@ namespace API.Controllers
         private readonly TokenService _tokenService;
         private readonly StoreContext _context;
 
-        public AccountController(UserManager<User> userManager, TokenService tokenService, 
+        public AccountController(UserManager<User> userManager, TokenService tokenService,
             StoreContext context)
         {
             _context = context;
@@ -86,6 +86,16 @@ namespace API.Controllers
                 Token = await _tokenService.GenerateToken(user),
                 Basket = userBasket?.MapBasketToDto()
             };
+        }
+
+        [Authorize]
+        [HttpGet("savedAddress")]
+        public async Task<ActionResult<UserAddress>> GetSavedAddress()
+        {
+            return await _userManager.Users
+                .Where(x => x.UserName == User.Identity.Name)
+                .Select(user => user.Address)
+                .FirstOrDefaultAsync();
         }
 
         private async Task<Basket> RetrieveBasket(string buyerId)
