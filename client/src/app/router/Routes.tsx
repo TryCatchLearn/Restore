@@ -5,10 +5,8 @@ import Register from "../../features/account/Register";
 import BasketPage from "../../features/basket/BasketPage";
 import Catalog from "../../features/catalog/Catalog";
 import ProductDetails from "../../features/catalog/ProductDetails";
-import CheckoutPage from "../../features/checkout/CheckoutPage";
 import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
 import ContactPage from "../../features/contact/ContactPage";
-import HomePage from "../../features/home/HomePage";
 import Orders from "../../features/orders/Orders";
 import NotFound from "../errors/NotFound";
 import ServerError from "../errors/ServerError";
@@ -24,7 +22,6 @@ export const router = createBrowserRouter([
                 {path: 'checkout', element: <CheckoutWrapper />},
                 {path: 'orders', element: <Orders />},
             ]},
-            {path: '', element: <HomePage />},
             {path: 'catalog', element: <Catalog />},
             {path: 'catalog/:id', element: <ProductDetails />},
             {path: 'about', element: <AboutPage />},
