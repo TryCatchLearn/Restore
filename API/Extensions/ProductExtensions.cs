@@ -33,10 +33,10 @@ namespace API.Extensions
             var typeList = new List<string>();
 
             if (!string.IsNullOrEmpty(brand))
-                brandList.AddRange(brand.ToLower().Split(",").ToList());
+                brandList.AddRange(brand.Replace(" ","").ToLower().Split(",").ToList());
 
             if (!string.IsNullOrEmpty(type))
-                typeList.AddRange(type.ToLower().Split(",").ToList());
+                typeList.AddRange(type.Replace(" ","").ToLower().Split(",").ToList());
 
             query = query.Where(p => brandList.Count == 0 || brandList.Contains(p.Brand.ToLower()));
 
