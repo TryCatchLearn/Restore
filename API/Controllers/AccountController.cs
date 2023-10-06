@@ -33,7 +33,7 @@ public class AccountController : BaseApiController
         var userBasket = await RetrieveBasket(loginDto.Username);
         var anonBasket = await RetrieveBasket(Request.Cookies["buyerId"]);
 
-        if (anonBasket != null) 
+        if (anonBasket != null)
         {
             if (userBasket != null) _context.Baskets.Remove(userBasket);
             anonBasket.BuyerId = user.UserName;
@@ -85,6 +85,16 @@ public class AccountController : BaseApiController
             Token = await _tokenService.GenerateToken(user),
             Basket = userBasket?.MapBasketToDto()
         };
+    }
+
+    [Authorize]
+    [HttpGet("savedAddress")]
+    public async Task<ActionResult<UserAddress>> GetSavedAddress()
+    {
+        return await _userManager.Users
+            .Where(x => x.UserName == User.Identity.Name)
+            .Select(user => user.Address)
+            .FirstOrDefaultAsync();
     }
 
     private async Task<Basket> RetrieveBasket(string buyerId)
